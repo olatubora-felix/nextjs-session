@@ -1,6 +1,7 @@
 "use client";
 import { User } from "@/types/users";
 import Link from "next/link";
+import { Search } from "../search";
 
 
 interface UserListProps {
@@ -19,7 +20,10 @@ const UserList = ({ users }: UserListProps) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Users</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold mb-6">Users</h1>
+        <Search />
+      </div>
       <div className="grid gap-4 md:grid-cols-2">
         {users.map((user) => (
           <Link key={user.id} href={`/users/${user.id}`}>

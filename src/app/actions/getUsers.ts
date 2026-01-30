@@ -2,8 +2,10 @@ import "server-only";
 import { UsersResponse } from "@/types/users";
 
 // Get all users
-const getUsers = async (): Promise<UsersResponse> => {
-  const res = await fetch("https://dummyjson.com/users");
+const getUsers = async (query?: string | null): Promise<UsersResponse> => {
+  const res = await fetch(
+    `https://dummyjson.com/users${query ? `/search?q=${query}` : ""}`
+  );
   if (!res.ok) {
     throw new Error("Failed to fetch users");
   }
@@ -18,7 +20,6 @@ const getUserById = async (userId: number) => {
     throw new Error("Failed to fetch user");
   }
   const data = await res.json();
-  console.log(data);
   return data;
 };
 
